@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+            <meta name="description" content="" />
+            <meta name="author" content="" />
+            <title>한국공학대학교</title>
+            <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+            <link href="css/styles.css" rel="stylesheet" />
+            <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+            <link href="css/styles.css" rel="stylesheet" />
+        </head>
+        <body class="sb-nav-fixed">
+            <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                <!-- Navbar Brand-->
+                <a class="navbar-brand ps-3" href="/"><img src="images/logo.png" alt="한국공대로고" width="200px"></a>
+                <!-- Sidebar Toggle-->
+                <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+                <!-- Navbar Search-->
+                <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                </form>
+                <!-- Navbar-->
+                <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <%-login%>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div id="layoutSidenav">
+                <div id="layoutSidenav_nav">
+                    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                        <div class="sb-sidenav-menu">
+                            <div class="nav">
+                                <div class="sb-sidenav-menu-heading">홈</div>
+                                <a class="nav-link" href="/">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                    홈페이지
+                                </a>
+                                <div class="sb-sidenav-menu-heading">마이페이지</div>
+                                <a class="nav-link" href="/page/mypage">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                    마이페이지
+                                </a>
+                                <div class="sb-sidenav-menu-heading">강의실 찾기</div>
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                    메인
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                            빈 강의실 찾기 
+                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                        </a>
+                                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                            <nav class="sb-sidenav-menu-nested nav">
+                                                <a class="nav-link" href="/select/A">A동</a>
+                                                <a class="nav-link" href="/select/B">B동</a>
+                                                <a class="nav-link" href="/select/C">C동</a>
+                                                <a class="nav-link" href="/select/D">D동</a>
+                                                <a class="nav-link" href="/select/E">E동</a>
+                                                <a class="nav-link" href="/select/Sanyung">산학융합관</a>
+                                            </nav>
+                                        </div>
+                                    </nav>
+                                </div>
+                                <div class="sb-sidenav-menu-heading">여분의 기능</div>
+                                <a class="nav-link" href="/page/board">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    게시판
+                                </a>
+                                <a class="nav-link" href="/report">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    신고하기
+                                </a>
+                                <a class="nav-link" href="/page/map">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    지도
+                                </a>
+                                <a class="nav-link" href="/page/how_use">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    이용안내
+                                </a>
+                            </div>
+                        </div>
+                        <div class="sb-sidenav-footer">
+                            <div class="small">Logged in as:</div>
+                            Start Bootstrap
+                        </div>
+                    </nav>
+                </div>
+                <div id="layoutSidenav_content">
+                    <main>
+                        <div class="container-fluid px-4">
+                            <h1 class="mt-4">신고하기</h1>
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    장시간 자리를 비우거나 퇴실을 누르지 않거나 강의실을 예약한 뒤 입실하지 않은 사용자를 신고 해주시길 바랍니다
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-table me-1"></i>
+                                    해당 건물
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  해당 건물
+                                </a>
+                              
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="/report/A">A동</a></li>
+                                  <li><a class="dropdown-item" href="/report/B">B동</a></li>
+                                  <li><a class="dropdown-item" href="/report/C">C동</a></li>
+                                  <li><a class="dropdown-item" href="/report/D">D동</a></li>
+                                  <li><a class="dropdown-item" href="/report/E">E동</a></li>
+                                  <li><a class="dropdown-item" href="/report/Sanyung">산학융합관</a></li>
+                                </ul>
+                              </div>
+                        </div>
+                        <div class="card mb-4">
+                            <form action="/report/Sanyung/process" method="post">
+                                <table border="1" width=500 class="table" id="sanyoung">
+                                    <tr>
+                                        <th colspan="2">
+                                            산학융합관
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td width=50>
+                                            <select name="selectroom">
+                                                <option>강의실을 선택해주세요</option>
+                                                <option value="201">201호</option>
+                                                <option value="202">202호</option>
+                                                <option value="203">203호</option>
+                                                <option value="204">204호</option>
+                                                <option value="205">205호</option>
+                                                <option value="206">206호</option>
+                                                <option value="301">301호</option>
+                                                <option value="302">302호</option>
+                                                <option value="303">303호</option>
+                                                <option value="304">304호</option>
+                                                <option value="305">305호</option>
+                                                <option value="306">306호</option>
+                                                <option value="401">401호</option>
+                                                <option value="402">402호</option>
+                                                <option value="403">403호</option>
+                                                <option value="404">404호</option>
+                                                <option value="405">405호</option>
+                                                <option value="406">406호</option>
+                                                <option value="501">501호</option>
+                                                <option value="502">502호</option>
+                                                <option value="503">503호</option>
+                                                <option value="504">504호</option>
+                                                <option value="505">505호</option>
+                                                <option value="506">506호</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" height=400>
+                                            <textarea name="reportcontent"placeholder="내용을 입력하세요." style="width: 500%; height: 100%"></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align=right>
+                                            <input type="submit" value="신고하기">
+                                            <input type="button" value="뒤로가기">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </main>
+                    <footer class="py-4 bg-light mt-auto">
+                        <div class="container-fluid px-4">
+                            <div class="d-flex align-items-center justify-content-between small">
+                                <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                                <div>
+                                    <a href="#">Privacy Policy</a>
+                                    &middot;
+                                    <a href="#">Terms &amp; Conditions</a>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </body>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+</html>

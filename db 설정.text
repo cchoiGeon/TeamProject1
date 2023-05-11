@@ -1,0 +1,343 @@
+CREATE DATABASE lectureroom
+
+USE lectureroom
+
+CREATE TABLE Afloor2(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Afloor3(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Afloor4(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+
+
+CREATE TABLE Bfloor2(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Bfloor3(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Bfloor4(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+
+
+CREATE TABLE Cfloor2(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Cfloor3(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Cfloor4(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+
+
+CREATE TABLE Dfloor2(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Dfloor3(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Dfloor4(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+
+
+CREATE TABLE Efloor2(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Efloor3(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Efloor4(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+
+
+CREATE TABLE Sanyungfloor2(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Sanyungfloor3(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Sanyungfloor4(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Sanyungfloor5(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Sanyungfloor6(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+CREATE TABLE Sanyungfloor7(
+  number INT(3) NOT NULL,
+  status TEXT NOT NULL,
+  time DATETIME NULL,
+  now_userid INT(10) NULL,
+  past_userid INT(10) NULL,
+  PRIMARY KEY(number)
+);
+
+
+
+CREATE TABLE register(
+  num INT(5) NOT NULL AUTO_INCREMENT,
+  name TEXT NOT NULL,
+  id INT(10) NOT NULL,
+  password TEXT NOT NULL,
+  usetrue TEXT NOT NULL,
+  student_card_root TEXT NULL,
+  allow_login TEXT NULL,
+  warning INT(1) NOT NULL,
+  warning_frist TEXT NULL,
+  warning_second TEXT NULL,
+  warning_thrid TEXT NULL,
+  PRIMARY KEY(num)
+);
+
+CREATE TABLE report(
+  num INT(5) NOT NULL AUTO_INCREMENT,
+  building TEXT NOT NULL,
+  floornum TEXT NOT NULL,
+  content TEXT NOT NULL,
+  time DATETIME NULL,
+  report_userid TEXT NULL,
+  be_reported_userid TEXT NULL,
+  PRIMARY KEY(num)
+);
+
+
+INSERT INTO Afloor2(number,status) VALUES('201','사용가능');
+INSERT INTO Afloor2(number,status) VALUES('202','사용가능');
+INSERT INTO Afloor2(number,status) VALUES('203','사용가능');
+INSERT INTO Afloor2(number,status) VALUES('204','사용가능');
+INSERT INTO Afloor2(number,status) VALUES('205','사용가능');
+INSERT INTO Afloor2(number,status) VALUES('206','사용가능');
+INSERT INTO Afloor3(number,status) VALUES('301','사용가능');
+INSERT INTO Afloor3(number,status) VALUES('302','사용가능');
+INSERT INTO Afloor3(number,status) VALUES('303','사용가능');
+INSERT INTO Afloor3(number,status) VALUES('304','사용가능');
+INSERT INTO Afloor3(number,status) VALUES('305','사용가능');
+INSERT INTO Afloor3(number,status) VALUES('306','사용가능');
+INSERT INTO Afloor4(number,status) VALUES('401','사용가능');
+INSERT INTO Afloor4(number,status) VALUES('402','사용가능');
+INSERT INTO Afloor4(number,status) VALUES('403','사용가능');
+INSERT INTO Afloor4(number,status) VALUES('404','사용가능');
+INSERT INTO Afloor4(number,status) VALUES('405','사용가능');
+INSERT INTO Afloor4(number,status) VALUES('406','사용가능');
+
+INSERT INTO Bfloor2(number,status) VALUES('201','사용가능');
+INSERT INTO Bfloor2(number,status) VALUES('202','사용가능');
+INSERT INTO Bfloor2(number,status) VALUES('203','사용가능');
+INSERT INTO Bfloor2(number,status) VALUES('204','사용가능');
+INSERT INTO Bfloor2(number,status) VALUES('205','사용가능');
+INSERT INTO Bfloor2(number,status) VALUES('206','사용가능');
+INSERT INTO Bfloor3(number,status) VALUES('301','사용가능');
+INSERT INTO Bfloor3(number,status) VALUES('302','사용가능');
+INSERT INTO Bfloor3(number,status) VALUES('303','사용가능');
+INSERT INTO Bfloor3(number,status) VALUES('304','사용가능');
+INSERT INTO Bfloor3(number,status) VALUES('305','사용가능');
+INSERT INTO Bfloor3(number,status) VALUES('306','사용가능');
+INSERT INTO Bfloor4(number,status) VALUES('401','사용가능');
+INSERT INTO Bfloor4(number,status) VALUES('402','사용가능');
+INSERT INTO Bfloor4(number,status) VALUES('403','사용가능');
+INSERT INTO Bfloor4(number,status) VALUES('404','사용가능');
+INSERT INTO Bfloor4(number,status) VALUES('405','사용가능');
+INSERT INTO Bfloor4(number,status) VALUES('406','사용가능');
+
+INSERT INTO Cfloor2(number,status) VALUES('201','사용가능');
+INSERT INTO Cfloor2(number,status) VALUES('202','사용가능');
+INSERT INTO Cfloor2(number,status) VALUES('203','사용가능');
+INSERT INTO Cfloor2(number,status) VALUES('204','사용가능');
+INSERT INTO Cfloor2(number,status) VALUES('205','사용가능');
+INSERT INTO Cfloor2(number,status) VALUES('206','사용가능');
+INSERT INTO Cfloor3(number,status) VALUES('301','사용가능');
+INSERT INTO Cfloor3(number,status) VALUES('302','사용가능');
+INSERT INTO Cfloor3(number,status) VALUES('303','사용가능');
+INSERT INTO Cfloor3(number,status) VALUES('304','사용가능');
+INSERT INTO Cfloor3(number,status) VALUES('305','사용가능');
+INSERT INTO Cfloor3(number,status) VALUES('306','사용가능');
+INSERT INTO Cfloor4(number,status) VALUES('401','사용가능');
+INSERT INTO Cfloor4(number,status) VALUES('402','사용가능');
+INSERT INTO Cfloor4(number,status) VALUES('403','사용가능');
+INSERT INTO Cfloor4(number,status) VALUES('404','사용가능');
+INSERT INTO Cfloor4(number,status) VALUES('405','사용가능');
+INSERT INTO Cfloor4(number,status) VALUES('406','사용가능');
+
+INSERT INTO Dfloor2(number,status) VALUES('201','사용가능');
+INSERT INTO Dfloor2(number,status) VALUES('202','사용가능');
+INSERT INTO Dfloor2(number,status) VALUES('203','사용가능');
+INSERT INTO Dfloor2(number,status) VALUES('204','사용가능');
+INSERT INTO Dfloor2(number,status) VALUES('205','사용가능');
+INSERT INTO Dfloor2(number,status) VALUES('206','사용가능');
+INSERT INTO Dfloor3(number,status) VALUES('301','사용가능');
+INSERT INTO Dfloor3(number,status) VALUES('302','사용가능');
+INSERT INTO Dfloor3(number,status) VALUES('303','사용가능');
+INSERT INTO Dfloor3(number,status) VALUES('304','사용가능');
+INSERT INTO Dfloor3(number,status) VALUES('305','사용가능');
+INSERT INTO Dfloor3(number,status) VALUES('306','사용가능');
+INSERT INTO Dfloor4(number,status) VALUES('401','사용가능');
+INSERT INTO Dfloor4(number,status) VALUES('402','사용가능');
+INSERT INTO Dfloor4(number,status) VALUES('403','사용가능');
+INSERT INTO Dfloor4(number,status) VALUES('404','사용가능');
+INSERT INTO Dfloor4(number,status) VALUES('405','사용가능');
+INSERT INTO Dfloor4(number,status) VALUES('406','사용가능');
+
+INSERT INTO Efloor2(number,status) VALUES('201','사용가능');
+INSERT INTO Efloor2(number,status) VALUES('202','사용가능');
+INSERT INTO Efloor2(number,status) VALUES('203','사용가능');
+INSERT INTO Efloor2(number,status) VALUES('204','사용가능');
+INSERT INTO Efloor2(number,status) VALUES('205','사용가능');
+INSERT INTO Efloor2(number,status) VALUES('206','사용가능');
+INSERT INTO Efloor3(number,status) VALUES('301','사용가능');
+INSERT INTO Efloor3(number,status) VALUES('302','사용가능');
+INSERT INTO Efloor3(number,status) VALUES('303','사용가능');
+INSERT INTO Efloor3(number,status) VALUES('304','사용가능');
+INSERT INTO Efloor3(number,status) VALUES('305','사용가능');
+INSERT INTO Efloor3(number,status) VALUES('306','사용가능');
+INSERT INTO Efloor4(number,status) VALUES('401','사용가능');
+INSERT INTO Efloor4(number,status) VALUES('402','사용가능');
+INSERT INTO Efloor4(number,status) VALUES('403','사용가능');
+INSERT INTO Efloor4(number,status) VALUES('404','사용가능');
+INSERT INTO Efloor4(number,status) VALUES('405','사용가능');
+INSERT INTO Efloor4(number,status) VALUES('406','사용가능');
+
+INSERT INTO Sanyungfloor2(number,status) VALUES('201','사용가능');
+INSERT INTO Sanyungfloor2(number,status) VALUES('202','사용가능');
+INSERT INTO Sanyungfloor2(number,status) VALUES('203','사용가능');
+INSERT INTO Sanyungfloor2(number,status) VALUES('204','사용가능');
+INSERT INTO Sanyungfloor2(number,status) VALUES('205','사용가능');
+INSERT INTO Sanyungfloor2(number,status) VALUES('206','사용가능');
+INSERT INTO Sanyungfloor3(number,status) VALUES('301','사용가능');
+INSERT INTO Sanyungfloor3(number,status) VALUES('302','사용가능');
+INSERT INTO Sanyungfloor3(number,status) VALUES('303','사용가능');
+INSERT INTO Sanyungfloor3(number,status) VALUES('304','사용가능');
+INSERT INTO Sanyungfloor3(number,status) VALUES('305','사용가능');
+INSERT INTO Sanyungfloor3(number,status) VALUES('306','사용가능');
+INSERT INTO Sanyungfloor4(number,status) VALUES('401','사용가능');
+INSERT INTO Sanyungfloor4(number,status) VALUES('402','사용가능');
+INSERT INTO Sanyungfloor4(number,status) VALUES('403','사용가능');
+INSERT INTO Sanyungfloor4(number,status) VALUES('404','사용가능');
+INSERT INTO Sanyungfloor4(number,status) VALUES('405','사용가능');
+INSERT INTO Sanyungfloor4(number,status) VALUES('406','사용가능');
+INSERT INTO Sanyungfloor5(number,status) VALUES('501','사용가능');
+INSERT INTO Sanyungfloor5(number,status) VALUES('502','사용가능');
+INSERT INTO Sanyungfloor5(number,status) VALUES('503','사용가능');
+INSERT INTO Sanyungfloor5(number,status) VALUES('504','사용가능');
+INSERT INTO Sanyungfloor5(number,status) VALUES('505','사용가능');
+INSERT INTO Sanyungfloor5(number,status) VALUES('506','사용가능');
+INSERT INTO Sanyungfloor6(number,status) VALUES('601','사용가능');
+INSERT INTO Sanyungfloor6(number,status) VALUES('602','사용가능');
+INSERT INTO Sanyungfloor6(number,status) VALUES('603','사용가능');
+INSERT INTO Sanyungfloor6(number,status) VALUES('604','사용가능');
+INSERT INTO Sanyungfloor6(number,status) VALUES('605','사용가능');
+INSERT INTO Sanyungfloor6(number,status) VALUES('606','사용가능');
+INSERT INTO Sanyungfloor7(number,status) VALUES('701','사용가능');
+INSERT INTO Sanyungfloor7(number,status) VALUES('702','사용가능');
+INSERT INTO Sanyungfloor7(number,status) VALUES('703','사용가능');
+INSERT INTO Sanyungfloor7(number,status) VALUES('704','사용가능');
+INSERT INTO Sanyungfloor7(number,status) VALUES('705','사용가능');
+INSERT INTO Sanyungfloor7(number,status) VALUES('706','사용가능');
