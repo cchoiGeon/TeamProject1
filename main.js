@@ -14,7 +14,6 @@ passportConfig()
 // 라우팅 
 const selectRouter = require('./Router/select_campus/select_campus');
 const reportRouter = require('./Router/report_campus/report_campus');
-
 const pageRouter = require('./Router/page.js')
 const authRouter = require('./Router/auth.js')
 const adminbroRouter = require('./Router/adminbro.js')

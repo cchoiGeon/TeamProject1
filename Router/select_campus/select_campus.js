@@ -1,16 +1,9 @@
 const express = require('express');
 const ejs = require('ejs');
-const mysql = require('mysql');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const router = express.Router();
-const db = mysql.createConnection({
-  host : 'localhost',
-  user : 'root',
-  password : process.env.DB_PASSWORD,
-  database : 'lectureroom'
-});
-db.connect();
+const db = require('../../db')
 const {isLoggedIn} = require('../../middlewares/index')
 const campuslist = ['A','B','C','D','E','Sanyung']
 
@@ -37,107 +30,41 @@ function loginbox(req,res){
 }
 
 for(let i=0; i<campuslist.length; i++){
-  router.get(`/${campuslist[i]}`,isLoggedIn,(req,res)=>{
-    loginbox(req,res)
-    // for(let k=2; k < 5; k++){
-    //   db.query(`SELECT * FROM ${campuslist[i]}floor${k}`,function(err,floor){
-    //     console.log(floor)
-    //     여기서 잘 생각해보자 
-    //   });
-    // }
-    db.query(`SELECT * FROM ${campuslist[i]}floor2`,function(err,floor2){
-      db.query(`SELECT * FROM ${campuslist[i]}floor3`,function(err,floor3){
-        db.query(`SELECT * FROM ${campuslist[i]}floor4`,function(err,floor4){
-          let true201 = 0;
-          let true202 = 0;
-          let true203 = 0;
-          let true204 = 0;
-          let true205 = 0;
-          let true206 = 0;
-          if(floor2[0].status === '사용가능'){
-            true201 = 1;
-          }if(floor2[1].status === '사용가능'){
-            true202 = 1;
-          }if(floor2[2].status === '사용가능'){
-            true203 = 1;
-          }if(floor2[3].status === '사용가능'){
-            true204 = 1;
-          }if(floor2[4].status === '사용가능'){
-            true205 = 1;
-          }if(floor2[5].status === '사용가능'){
-            true206 = 1;
+  router.get(`/${campuslist[i]}`,isLoggedIn,async(req,res)=>{
+    try{
+      loginbox(req,res)
+      let floor2 = await db.query(`SELECT * FROM ${campuslist[i]}floor2`)
+      let floor3 = await db.query(`SELECT * FROM ${campuslist[i]}floor3`)
+      let floor4 = await db.query(`SELECT * FROM ${campuslist[i]}floor4`)
+      floor2 = floor2[0]
+      floor3 = floor3[0]
+      floor4 = floor4[0]
+      let count_floor2;
+      let count_floor3;
+      let count_floor4;
+      let count_floor5;
+      for(let i=2; i < 5; i++){ // 층 
+        for(let j=0; j < 6; j++){ // 인덱스 값(호수)
+          if(`floor${i}`[j].status === '사용가능'){
+            `count_floor${i}`+=1
           }
-          let true301 = 0;
-          let true302 = 0;
-          let true303 = 0;
-          let true304 = 0;
-          let true305 = 0;
-          let true306 = 0;
-          if(floor3[0].status === '사용가능'){
-            true301 = 1;
-          }if(floor3[1].status === '사용가능'){
-            true302 = 1;
-          }if(floor3[2].status === '사용가능'){
-            true303 = 1;
-          }if(floor3[3].status === '사용가능'){
-            true304 = 1;
-          }if(floor3[4].status === '사용가능'){
-            true305 = 1;
-          }if(floor3[5].status === '사용가능'){
-            true306 = 1;
+        }
+      }
+      if(`${campuslist[i]}`==='Sanyung'){
+        let floor5 = await db.query(`SELECT * FROM Sanyung floor5`)
+        floor5 = floor5[0]
+        for(let k=0; k<6; k++){
+          if(floor5[k].status === '사용가능'){
+            count_floor5+=1
           }
-          let true401 = 0;
-          let true402 = 0;
-          let true403 = 0;
-          let true404 = 0;
-          let true405 = 0;
-          let true406 = 0;
-          if(floor4[0].status === '사용가능'){
-            true401 = 1;
-          }if(floor4[1].status === '사용가능'){
-            true402 = 1;
-          }if(floor4[2].status === '사용가능'){
-            true403 = 1;
-          }if(floor4[3].status === '사용가능'){
-            true404 = 1;
-          }if(floor4[4].status === '사용가능'){
-            true405 = 1;
-          }if(floor4[5].status === '사용가능'){
-            true406 = 1;
-          }
-          room2sum = true201+true202+true203+true204+true205+true206;
-          room3sum = true301+true302+true303+true304+true305+true306;
-          room4sum = true401+true402+true403+true404+true405+true406;
-          if(`${campuslist[i]}`==='Sanyung'){
-            db.query(`SELECT * FROM ${campuslist[i]}floor5`,function(err,floor5){
-              let true501 = 0;
-              let true502 = 0;
-              let true503 = 0;
-              let true504 = 0;
-              let true505 = 0;
-              let true506 = 0;
-              if(floor5[0].status === '사용가능'){
-                true501 = 1;
-              }if(floor5[1].status === '사용가능'){
-                true502 = 1;
-              }if(floor5[2].status === '사용가능'){
-                true503 = 1;
-              }if(floor5[3].status === '사용가능'){
-                true504 = 1;
-              }if(floor5[4].status === '사용가능'){
-                true505 = 1;
-              }if(floor5[5].status === '사용가능'){
-                true506 = 1;
-              }
-              room5sum = true501+true502+true503+true504+true505+true506;
-              res.render('searchSanyung',{'login':login,'campuslist':campuslist[i],'floor2':room2sum,'floor3':room3sum,'floor4':room4sum,'floor5':room5sum})
-            });
-            return false;
-          }
-          res.render('search',{'login':login,'campuslist':campuslist[i],'floor2':room2sum,'floor3':room3sum,'floor4':room4sum})
-        });
-      });
-    });
+        }
+        res.render('searchSanyung',{'login':login,'campuslist':campuslist[i],'floor2':count_floor2,'floor3':count_floor3,'floor4':count_floor4,'floor5':count_floor5})
+      }
+      res.render('search',{'login':login,'campuslist':campuslist[i],'floor2':count_floor2,'floor3':count_floor3,'floor4':count_floor4})
+    }catch(error){
+      console.error(error)
+      next(error)
+    } 
   })
 }
 
@@ -159,11 +86,11 @@ for(let i=0; i<campuslist.length; i++){
 }
 
 for(let i=0; i<campuslist.length; i++){
- router.get(`/${campuslist[i]}_floor2`,isLoggedIn,(req,res)=>{
-    db.query(`SELECT * FROM ${campuslist[i]}floor2`,function(err,floor2){
-      if(err){
-        console.log(err)
-      }
+  router.get(`/${campuslist[i]}_floor2`,isLoggedIn,async(req,res)=>{
+    try{
+      let floor2 = await db.query(`SELECT * FROM ${campuslist[i]}floor2`)
+      floor2 = floor2[0]
+      //for문으로 감싸기
       let f201 = floor2[0].number
       let f202 = floor2[1].number
       let f203 = floor2[2].number
@@ -177,7 +104,10 @@ for(let i=0; i<campuslist.length; i++){
       let fs205 = floor2[4].status;
       let fs206 = floor2[5].status;
       res.render('searchfloor',{'campuslist':campuslist[i],'selectfloor':'floor2','selectfloor01':f201,'selectfloor02':f202,'selectfloor03':f203,'selectfloor04':f204,'selectfloor05':f205,'selectfloor06':f206,'floor_status01':fs201,'floor_status02':fs202,'floor_status03':fs203,'floor_status04':fs204,'floor_status05':fs205,'floor_status06':fs206})
-    })
+    }catch(error){
+      console.error(error)
+      next(error)
+    }
   })
 }
 
