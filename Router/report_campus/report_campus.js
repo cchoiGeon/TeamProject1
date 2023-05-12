@@ -47,7 +47,7 @@ for(let i=0; i<campuslist.length; i++){
 }
 
 for(let i=0; i<campuslist.length; i++){
- router.post(`/${campuslist[i]}/process`,async(req,res)=>{
+ router.post(`/${campuslist[i]}/process`,async(req,res,next)=>{
     let post = req.body;
     let reportcontent = post.reportcontent;
     let selectroom = post.selectroom;

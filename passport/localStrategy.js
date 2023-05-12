@@ -13,19 +13,19 @@ module.exports = () => {
     try {
       let exUser = await db.query('SELECT * FROM register WHERE id=?',[parseInt(id)])
       exUser = exUser[0]
-      if(!exUser[0]){ 
-        return done(null, false, { message: '아이디나 비밀번호가 일치하지 않습니다.' }); // 이 done 함수 누가 받는지 알아보고 수정하기
+      if(exUser.length === 0){ 
+        return done(null, false, { message: '가입되지 않은 회원입니다.' }); // 회원정보 X
       }
       // const result = bcrypt.hash.compare(password,exUser[0].password)
       // password == exUser[0].password -> result 로 바꾸기
       if(password == exUser[0].password) {
         return done(null, exUser[0]);
       } else {
-        return done(null, false, { message: '비밀번호가 일치하지 않습니다.' });
+        return done(null, false, { message: '비밀번호가 일치하지 않습니다.' }); // 로그인 실패
       }
     }catch(error) {
       console.error(error);
-      done(error);
+      done(error); // 서버 에러시
     }
   }));
 };

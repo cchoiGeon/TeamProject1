@@ -2,7 +2,7 @@ exports.isLoggedIn = (req,res,next) => {
     if (req.isAuthenticated()){
         next()
     }else{
-        res.status(403).send('로그인 필요')
+        return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('로그인을 해주세요'); window.location='/page/login'</script></html>`);
     }
 }
 
@@ -10,7 +10,6 @@ exports.isNotLoggedIn = (req,res,next) => {
     if (!req.isAuthenticated()){
         next()
     }else{
-        const message = encodeURIComponent('로그인한 상태입니다')
-        res.redirect(`/?error=${message}`)    
+        return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('로그인 한 상태입니다'); window.location='/'</script></html>`);   
     }
 }

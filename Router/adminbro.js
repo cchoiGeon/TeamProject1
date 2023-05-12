@@ -26,15 +26,15 @@ router.use(express.static('therest'));
 router.use(express.static('uploads'));
 
 
-router.get('/adminbro',adminbro)
-router.post('/adminbro/process',adminbro_process)
+router.get('/',adminbro)
+router.post('/process',adminbro_process)
 
-router.get('/adminbro/report',adminbro_report)
-router.post('/adminbro/report/process',adminbro_report_process)  
+router.get('/report',adminbro_report)
+router.post('report/process',adminbro_report_process)  
 
-router.get('/adminbro/user',adminbro_user)
-router.post('/adminbro/user/process',adminbro_user_process)
+router.get('/user',adminbro_user)
+router.post('/user/process',adminbro_user_process)
 
-router.get('/adminbro/img/:id',adminbro_img)
+router.get('/img/:id',adminbro_img)
 
 module.exports = router

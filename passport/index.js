@@ -11,7 +11,7 @@ module.exports = () => {
     let user = await db.query('SELECT * FROM register WHERE id=?',[id])// db에서 사용자 아이디가 있는지 찾아봐줌
     user = user[0]
     if(user){
-      done(null,user)
+      done(null,user) // req.user을 만들어줌, req.user에는 사용자 정보가 담겨있음
     }  
     else{
       return done(err)// 없으면 에러 

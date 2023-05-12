@@ -37,7 +37,7 @@ exports.adminbro_process = (req,res) => {
     return res.redirect('/adminbro/user')
   }
 }
-exports.adminbro_report = async(req,res) => {
+exports.adminbro_report = async(req,res,next) => {
   try{
     if(req.user[0].id == parseInt(process.env.ADMIN_ID)){
       let report = await db.query('SELECT * FROM report')
@@ -73,7 +73,7 @@ exports.adminbro_report = async(req,res) => {
     next(error)
   }
 }
-exports.adminbro_report_process = async(req,res) => {
+exports.adminbro_report_process = async(req,res,next) => {
   try{
     const post = req.body;
     const reported_id = parseInt(post.reported_id)
@@ -101,7 +101,7 @@ exports.adminbro_report_process = async(req,res) => {
     next(error)
   }
 }
-exports.adminbro_user = async(req,res) => {
+exports.adminbro_user = async(req,res,next) => {
   try{
     if(req.user[0].id === parseInt(process.env.ADMIN_ID)){
       let register = await db.query('SELECT * FROM register')
@@ -139,7 +139,7 @@ exports.adminbro_user = async(req,res) => {
     next(error)
   }
 }
-exports.adminbro_user_process = async(req,res) => {
+exports.adminbro_user_process = async(req,res,next) => {
   try{
     const post = req.body;
     if(post.allow){
@@ -154,7 +154,7 @@ exports.adminbro_user_process = async(req,res) => {
     next(error)
   }
 }
-exports.adminbro_img = async(req,res) => {
+exports.adminbro_img = async(req,res,next) => {
   try{
     if(req.user[0].id === parseInt(process.env.ADMIN_ID)){
       const user_id = parseInt(path.parse(req.params.id).base);

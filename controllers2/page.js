@@ -53,7 +53,7 @@ exports.register2 = (req,res) => {
 
 ///////////////////// mypage 부분 ////////////////////////////////
 
-exports.mypage = async(req,res) => {
+exports.mypage = async(req,res,next) => {
   try{
     loginbox(req,res)
     let register = await db.query('SELECT * FROM register WHERE id=?',[req.user[0].id])

@@ -23,7 +23,7 @@ router.use(session({
 router.use(express.static('therest'));
 router.use(express.static('uploads'));
 
-exports.register_process = async(req,res) => { // 얘 auth 
+exports.register_process = async(req,res,next) => { // 얘 auth 
   let post = req.body;
   try{
     let register = await db.query('SELECT * FROM register')
@@ -49,7 +49,7 @@ exports.register_process = async(req,res) => { // 얘 auth
   }
 }
 
-exports.register2_process = async(req,res) => {// 얘 auth 
+exports.register2_process = async(req,res,next) => {// 얘 auth 
   if(!req.file){
     return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('학생증 사진을 올려주세요'); window.location='/page/register2'</script></html>`)
   }
@@ -70,10 +70,10 @@ exports.login_process = (req, res, next) => { // 얘 auth
       console.error(authError);
       return next(authError);
     }
-    if (!user) {
-      return res.redirect(`/?error=${info.message}`);
+    if (!user) { // 아이디 비번 틀렸을 때 ?
+      return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('아이디와 비밀번호를 다시 확인해주세요'); window.location='/page/login'</script></html>`);
     }
-    return req.login(user, (loginError) => {
+    return req.login(user, (loginError) => { // 성공했을 때
       if (loginError) {
         console.error(loginError);
         return next(loginError);
