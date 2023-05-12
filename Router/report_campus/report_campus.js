@@ -30,6 +30,7 @@ function loginbox(req,res){
       <li><a class="dropdown-item" href="/page/register">회원가입</a></li>`;
   }
 }
+
 router.get("/",isLoggedIn,(req,res)=>{
   loginbox(req,res)
   res.render('report',{'login':login})
@@ -47,7 +48,7 @@ for(let i=0; i<campuslist.length; i++){
 }
 
 for(let i=0; i<campuslist.length; i++){
- router.post(`/${campuslist[i]}/process`,async(req,res,next)=>{
+ router.post(`/${campuslist[i]}/process`,async(req,res)=>{
     let post = req.body;
     let reportcontent = post.reportcontent;
     let selectroom = post.selectroom;

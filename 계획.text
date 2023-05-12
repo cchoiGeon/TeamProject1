@@ -4,7 +4,7 @@
 
 mysql async await 사용법 알아보기 -> mysql2 (완료)
 
-Router/select_campus 쪽 코드 다시 짜기 중복되는 코드들 많으니까 잘 생각하고 짜기
+Router/select_campus 쪽 코드 다시 짜기 중복되는 코드들 많으니까 잘 생각하고 짜기 (완료)
 
 bcrypt 사용하기 -> 싸지방에선 안됨 ;;
 
