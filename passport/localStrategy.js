@@ -1,6 +1,5 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const mysql = require('mysql');
 const db = require('../db')
 // const bcrypt = require('bcrypt')
 
@@ -11,15 +10,12 @@ module.exports = () => {
     passReqToCallback: false,
   }, async (id, password, done) => { // 실제 전략을 수행하는 함수로 이게 메인임 로그인을 완료시키는 메인 함수
     try {
-      let exUser = await db.query('SELECT * FROM register WHERE id=?',[parseInt(id)])
-      exUser = exUser[0]
-      if(exUser.length === 0){ 
+      let exUser = (await db.query('SELECT * FROM register WHERE id=?',[id]))[0][0]
+      if(!exUser){ 
         return done(null, false, { message: '가입되지 않은 회원입니다.' }); // 회원정보 X
       }
-      // const result = bcrypt.hash.compare(password,exUser[0].password)
-      // password == exUser[0].password -> result 로 바꾸기
-      if(password == exUser[0].password) {
-        return done(null, exUser[0]);
+      if(password == exUser.password) {
+        return done(null, exUser);
       } else {
         return done(null, false, { message: '비밀번호가 일치하지 않습니다.' }); // 로그인 실패
       }

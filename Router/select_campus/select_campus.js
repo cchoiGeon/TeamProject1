@@ -28,8 +28,8 @@ function loginbox(req,res){
   if(req.user){
     login = `<li><a class="dropdown-item" href="/auth/logout/process">로그아웃</a></li>`;
   }else{
-    login = `<li><a class="dropdown-item" href="/page/login">로그인</a></li>
-      <li><a class="dropdown-item" href="/page/register">회원가입</a></li>`;
+    login = `<li><a class="dropdown-item" href="/login">로그인</a></li>
+      <li><a class="dropdown-item" href="/register">회원가입</a></li>`;
   }
 }
 

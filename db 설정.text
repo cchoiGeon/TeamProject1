@@ -185,9 +185,9 @@ CREATE TABLE Sanyungfloor7(
 
 CREATE TABLE register(
   num INT(5) NOT NULL AUTO_INCREMENT,
-  name TEXT NOT NULL,
-  id INT(10) NOT NULL,
+  id TEXT NOT NULL,
   password TEXT NOT NULL,
+  name TEXT NOT NULL,
   usetrue TEXT NOT NULL,
   student_card_root TEXT NULL,
   allow_login TEXT NULL,

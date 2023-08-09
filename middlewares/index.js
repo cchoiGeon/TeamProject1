@@ -2,7 +2,7 @@ exports.isLoggedIn = (req,res,next) => {
     if (req.isAuthenticated()){
         next()
     }else{
-        return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('로그인을 해주세요'); window.location='/page/login'</script></html>`);
+        return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('로그인을 해주세요'); window.location='/login'</script></html>`);
     }
 }
 

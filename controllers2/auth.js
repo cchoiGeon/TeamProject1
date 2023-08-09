@@ -26,42 +26,23 @@ router.use(express.static('uploads'));
 exports.register_process = async(req,res,next) => { // 얘 auth 
   let post = req.body;
   try{
-    let register = await db.query('SELECT * FROM register')
-    register = register[0] // 이건 왤까 ??
-    for(var i = 0; i < register.length; i++){
-      if(register[i].id === parseInt(post.id)){
-        return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('사용 중인 아이디입니다'); window.location='/page/register'</script></html>`)
-      }
+    let exUser = (await db.query('SELECT * FROM register WHERE id=?',[post.id]))[0][0]
+    if(exUser){
+      return res.redirect('/register')
     }
     if(9<post.id.length<=10 && post.password.length > 10){
       // const hash = await bcrypt.hash(post.password,12) 
       // 아래 post.password hash로 바꿔주기
-      await db.query('INSERT INTO register(name,id,password,usetrue,warning) VALUES(?,?,?,?,?)',[post.name,post.id,post.password,'사용가능',0])
-      req.session.userId = post.id
-      return res.redirect('/page/register2');
+      await db.query('INSERT INTO register(id,password,name,usetrue,warning) VALUES(?,?,?,?,?)',[post.id,post.password,post.name,'사용가능',0])
+      return res.redirect('/');
     }else{
-      return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('아이디와 비밀번호를 다시 한 번 확인해주세요'); window.location='/page/register'</script></html>`)
+      return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('아이디와 비밀번호를 다시 한 번 확인해주세요'); window.location='/register'</script></html>`)
     }
   }
   catch(error){
     console.error(error)
     next(error)
   }
-}
-
-exports.register2_process = async(req,res,next) => {// 얘 auth 
-  if(!req.file){
-    return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('학생증 사진을 올려주세요'); window.location='/page/register2'</script></html>`)
-  }
-  try{
-    await db.query('UPDATE register SET student_card_root=? WHERE id=?',[req.file.filename,req.session.userId])
-    req.session.userId = null
-    return res.redirect('/page/login');
-  }catch(error){
-    console.error(error)
-    next(error)
-  }
-
 }
 
 exports.login_process = (req, res, next) => { // 얘 auth 
@@ -71,7 +52,7 @@ exports.login_process = (req, res, next) => { // 얘 auth
       return next(authError);
     }
     if (!user) { // 아이디 비번 틀렸을 때 ?
-      return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('아이디와 비밀번호를 다시 확인해주세요'); window.location='/page/login'</script></html>`);
+      return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('아이디와 비밀번호를 다시 확인해주세요'); window.location='/login'</script></html>`);
     }
     return req.login(user, (loginError) => { // 성공했을 때
       if (loginError) {
