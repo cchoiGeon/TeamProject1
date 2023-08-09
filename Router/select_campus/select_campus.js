@@ -133,7 +133,7 @@ for(let i=0; i<campuslist.length; i++){
                 return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('사용 중인 강의실이 있습니다'); window.location='/select/${campuslist[i]}'</script></html>`);
               }
             }else if(floor[k].status === '예약 중' && floor[k].now_userid === req.user.id){
-              await db.query(`UPDATE ${campuslist[i]}${floorlist[j]}SET status=?, time=NOW(), now_userid=? WHERE number=?`,['사용 중',req.user.id,parseInt(floor[k].number)]) 
+              await db.query(`UPDATE ${campuslist[i]}${floorlist[j]} SET status=?, time=NOW(), now_userid=? WHERE number=?`,['사용 중',req.user.id,parseInt(floor[k].number)]) 
               await db.query('UPDATE register SET usetrue=? WHERE id=?',['사용 중',req.user.id])
               return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('입실이 완료 되셨습니다'); window.location='/select/${campuslist[i]}'</script></html>`);
             }else{
@@ -142,9 +142,6 @@ for(let i=0; i<campuslist.length; i++){
           }
           else if(list[k] ==='퇴실'){
             if(floor[k].status === '사용 중' || floor[k].status === '예약 중'){
-              console.log('퇴실중')
-              console.log('floor[k].now_userid :',floor[k].now_userid)
-              console.log('register.usetrue :', register.usetrue)
               if(floor[k].now_userid === req.user.id && register.usetrue === '사용 중'){
                 await db.query(`UPDATE ${campuslist[i]}${floorlist[j]} SET status=?, time=NOW(), past_userid=?, now_userid=? WHERE number=?`,['사용가능',req.user.id,null,parseInt(floor[k].number)])
                 await db.query('UPDATE register SET usetrue=? WHERE id=?',['사용가능',req.user.id])

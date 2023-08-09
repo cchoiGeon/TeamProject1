@@ -39,9 +39,8 @@ exports.adminbro_process = (req,res) => {
 }
 exports.adminbro_report = async(req,res,next) => {
   try{
-    if(req.user[0].id == parseInt(process.env.ADMIN_ID)){
-      let report = await db.query('SELECT * FROM report')
-      report = report[0]
+    if(req.user.id == process.env.ADMIN_ID){
+      let report = await (db.query('SELECT * FROM report'))[0]
       let table= `<table>
           <tr>
             <td>건물 이름</td>
@@ -76,21 +75,18 @@ exports.adminbro_report = async(req,res,next) => {
 exports.adminbro_report_process = async(req,res,next) => {
   try{
     const post = req.body;
-    const reported_id = parseInt(post.reported_id)
-    let result = await db.query('SELECT * FROM register WHERE id=?',[reported_id])
-    result = result[0]
-    const wcount =result[0].warning
-    if(wcount === 0){
+    let result = await (db.query('SELECT * FROM register WHERE id=?',[post.reported_id]))[0][0]
+    if(result.warning === 0){
       let reported_building = post.reported_building +'동'+ post.reported_floor + '호'
       db.query('UPDATE register SET warning=?, warning_frist=? WHERE id=?',[1,reported_building,reported_id],function(err,result){
         return res.redirect('/adminbro/report')
       })
-    }else if(wcount === 1){
+    }else if(result.warning === 1){
       let reported_building2 = post.reported_building +'동'+ post.reported_floor + '호'
       db.query('UPDATE register SET warning=?, warning_second=? WHERE id=?',[2,reported_building2,reported_id],function(err,result){
         return res.redirect('/adminbro/report')
       })
-    }else if(wcount === 2){
+    }else if(result.warning === 2){
       let reported_building3 = post.reported_building +'동'+ post.reported_floor + '호'
       db.query('UPDATE register SET allow_login=? warning_thrid=? WHERE id=?',['false',reported_building3,reported_id],function(err,result){
         return res.redirect('/adminbro/report')
@@ -103,9 +99,8 @@ exports.adminbro_report_process = async(req,res,next) => {
 }
 exports.adminbro_user = async(req,res,next) => {
   try{
-    if(req.user[0].id === parseInt(process.env.ADMIN_ID)){
-      let register = await db.query('SELECT * FROM register')
-      register = register[0]
+    if(req.user.id === process.env.ADMIN_ID){
+      let register = await(db.query('SELECT * FROM register'))[0]
       let table=`<table>
       <tr>
         <td>회원 이름</td>
@@ -156,11 +151,10 @@ exports.adminbro_user_process = async(req,res,next) => {
 }
 exports.adminbro_img = async(req,res,next) => {
   try{
-    if(req.user[0].id === parseInt(process.env.ADMIN_ID)){
-      const user_id = parseInt(path.parse(req.params.id).base);
-      let result = await db.query('SELECT * FROM register WHERE id=?',[user_id])
-      result = result[0]
-      const imgroot = result[0].student_card_root
+    if(req.user.id === process.env.ADMIN_ID){
+      const user_id = path.parse(req.params.id).base;
+      let result = await (db.query('SELECT * FROM register WHERE id=?',[user_id]))[0][0]
+      const imgroot = result.student_card_root
       return res.render('adminbro_user_img',{'imgroot':imgroot})
     }
     else{
