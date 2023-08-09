@@ -37,12 +37,11 @@ exports.register = (req,res) => {
 exports.mypage = async(req,res,next) => {
   try{
     loginbox(req,res)
-    let register = await db.query('SELECT * FROM register WHERE id=?',[req.user[0].id])
-    register = register[0]
-    const warning_count = register[0].warning;
-    const warning_frist = register[0].warning_frist;
-    const warning_second = register[0].warning_second;
-    const warning_thrid = register[0].warning_thrid;
+    let register = (await db.query('SELECT * FROM register WHERE id=?',[req.user.id]))[0][0]
+    const warning_count = register.warning;
+    const warning_frist = register.warning_frist;
+    const warning_second = register.warning_second;
+    const warning_thrid = register.warning_thrid;
     return res.render('mypage',{'login':login,'warning_count':warning_count,'warning_frist':warning_frist,'warning_second':warning_second,'warning_thrid':warning_thrid})
   }
   catch(error){

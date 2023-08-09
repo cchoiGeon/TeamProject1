@@ -37,12 +37,9 @@ for(let i=0; i<campuslist.length; i++){
   router.get(`/${campuslist[i]}`,isLoggedIn,async(req,res,next)=>{
     try{
       loginbox(req,res)
-      let floor2 = await db.query(`SELECT * FROM ${campuslist[i]}floor2`)
-      let floor3 = await db.query(`SELECT * FROM ${campuslist[i]}floor3`)
-      let floor4 = await db.query(`SELECT * FROM ${campuslist[i]}floor4`)
-      floor2= floor2[0]
-      floor3= floor3[0]
-      floor4= floor4[0]
+      let floor2 = (await db.query(`SELECT * FROM ${campuslist[i]}floor2`))[0]
+      let floor3 = (await db.query(`SELECT * FROM ${campuslist[i]}floor3`))[0]
+      let floor4 = (await db.query(`SELECT * FROM ${campuslist[i]}floor4`))[0]
       let count_floor2 = 0
       let count_floor3 = 0
       let count_floor4 = 0
@@ -58,8 +55,7 @@ for(let i=0; i<campuslist.length; i++){
         }
       } 
       if(`${campuslist[i]}`==='Sanyung'){
-        let floor5 = await db.query(`SELECT * FROM ${campuslist[i]}floor5`)
-        floor5 = floor5[0]
+        let floor5 = (await db.query(`SELECT * FROM ${campuslist[i]}floor5`))[0]
         let count_floor5 = 0
         for(let k=0; k<6; k++){
           if(floor5[k].status === '사용가능'){
@@ -95,8 +91,7 @@ for(let i=0; i<campuslist.length; i++){
   for(let j=0; j<floorlist.length; j++){
     router.get(`/${campuslist[i]}_${floorlist[j]}`,isLoggedIn, async (req,res,next)=>{
       try{
-        let floor = await db.query(`SELECT * FROM ${campuslist[i]}${floorlist[j]}`)
-        floor = floor[0]
+        let floor = (await db.query(`SELECT * FROM ${campuslist[i]}${floorlist[j]}`))[0]
         return res.render('searchfloor',{
           'campuslist':campuslist[i],'selectfloor':floorlist[j],'selectfloor01':floor[0].number,'selectfloor02':floor[1].number,'selectfloor03':floor[2].number,'selectfloor04':floor[3].number,'selectfloor05':floor[4].number,'selectfloor06':floor[5].number,
           'floor_status01':floor[0].status,'floor_status02':floor[1].status,'floor_status03':floor[2].status,'floor_status04':floor[3].status,'floor_status05':floor[4].status,'floor_status06':floor[5].status
@@ -124,25 +119,22 @@ for(let i=0; i<campuslist.length; i++){
         }else if(floorlist[j]==='floor5'){
           list = [post.class501,post.class502,post.class503,post.class504,post.class505,post.class506]
         }
-        let register = await db.query('SELECT * FROM register WHERE id=?',[req.user[0].id])
-        let floor = await db.query(`SELECT * FROM ${campuslist[i]}${floorlist[j]}`)
-        
-        register = register[0]
-        floor = floor[0]
+        let register = (await db.query('SELECT * FROM register WHERE id=?',[req.user.id]))[0][0]
+        let floor = (await db.query(`SELECT * FROM ${campuslist[i]}${floorlist[j]}`))[0]
 
         for(let k=0; k<list.length; k++){
           if(list[k] === '입실'){
             if(floor[k].status === '사용가능'){
-              if(register[0].id === req.user[0].id && register[0].usetrue === '사용가능'){
-                await db.query(`UPDATE ${campuslist[i]}${floorlist[j]} SET status=?, time=NOW(), now_userid=? WHERE number=?`,['사용 중',req.user[0].id,parseInt(floor[k].number)])
-                await db.query('UPDATE register SET usetrue=? WHERE id=?',['사용 중',req.user[0].id])
+              if(register.id === req.user.id && register.usetrue === '사용가능'){
+                await db.query(`UPDATE ${campuslist[i]}${floorlist[j]} SET status=?, time=NOW(), now_userid=? WHERE number=?`,['사용 중',req.user.id,parseInt(floor[k].number)])
+                await db.query('UPDATE register SET usetrue=? WHERE id=?',['사용 중',req.user.id])
                 return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('입실이 완료 되셨습니다'); window.location='/select/${campuslist[i]}'</script></html>`);
-              }else if(register[0].id === req.user[0].id && register[0].usetrue === '사용 중'){
+              }else if(register.id === req.user.id && register.usetrue === '사용 중'){
                 return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('사용 중인 강의실이 있습니다'); window.location='/select/${campuslist[i]}'</script></html>`);
               }
-            }else if(floor[k].status === '예약 중' && floor[k].now_userid === req.user[0].id){
-              await db.query(`UPDATE ${campuslist[i]}${floorlist[j]}SET status=?, time=NOW(), now_userid=? WHERE number=?`,['사용 중',req.user[0].id,parseInt(floor[k].number)]) 
-              await db.query('UPDATE register SET usetrue=? WHERE id=?',['사용 중',req.user[0].id])
+            }else if(floor[k].status === '예약 중' && floor[k].now_userid === req.user.id){
+              await db.query(`UPDATE ${campuslist[i]}${floorlist[j]}SET status=?, time=NOW(), now_userid=? WHERE number=?`,['사용 중',req.user.id,parseInt(floor[k].number)]) 
+              await db.query('UPDATE register SET usetrue=? WHERE id=?',['사용 중',req.user.id])
               return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('입실이 완료 되셨습니다'); window.location='/select/${campuslist[i]}'</script></html>`);
             }else{
               return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('사용 중인 강의실입니다'); window.location='/select/${campuslist[i]}'</script></html>`);
@@ -150,11 +142,14 @@ for(let i=0; i<campuslist.length; i++){
           }
           else if(list[k] ==='퇴실'){
             if(floor[k].status === '사용 중' || floor[k].status === '예약 중'){
-              if(floor[k].now_userid === req.user[0].id && register[0].usetrue === '사용 중'){
-                await db.query(`UPDATE ${campuslist[i]}${floorlist[j]} SET status=?, time=NOW(), past_userid=?, now_userid=? WHERE number=?`,['사용가능',req.user[0].id,null,parseInt(floor[k].number)])
-                await db.query('UPDATE register SET usetrue=? WHERE id=?',['사용가능',req.user[0].id])
+              console.log('퇴실중')
+              console.log('floor[k].now_userid :',floor[k].now_userid)
+              console.log('register.usetrue :', register.usetrue)
+              if(floor[k].now_userid === req.user.id && register.usetrue === '사용 중'){
+                await db.query(`UPDATE ${campuslist[i]}${floorlist[j]} SET status=?, time=NOW(), past_userid=?, now_userid=? WHERE number=?`,['사용가능',req.user.id,null,parseInt(floor[k].number)])
+                await db.query('UPDATE register SET usetrue=? WHERE id=?',['사용가능',req.user.id])
                 return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('퇴실이 완료 되셨습니다'); window.location='/select/${campuslist[i]}'</script></html>`);
-              }else if(floor[k].now_userid != req.user[0].id){
+              }else if(floor[k].now_userid != req.user.id){
                 return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('사용 중인 강의실입니다'); window.location='/select/${campuslist[i]}'</script></html>`);
               }
             }
@@ -164,11 +159,11 @@ for(let i=0; i<campuslist.length; i++){
           }
           else if(list[k] === '예약'){
             if(floor[k].status === '사용가능'){
-              if(register[0].id === req.user[0].id && register[0].usetrue === '사용가능'){
-                await db.query(`UPDATE ${campuslist[i]}${floorlist[j]} SET status=?, time=NOW(), now_userid=? WHERE number=?`,['예약 중',req.user[0].id,parseInt(floor[k].number)])
-                await db.query('UPDATE register SET usetrue=? WHERE id=?',['사용 중',req.user[0].id])
+              if(register.id === req.user.id && register.usetrue === '사용가능'){
+                await db.query(`UPDATE ${campuslist[i]}${floorlist[j]} SET status=?, time=NOW(), now_userid=? WHERE number=?`,['예약 중',req.user.id,parseInt(floor[k].number)])
+                await db.query('UPDATE register SET usetrue=? WHERE id=?',['사용 중',req.user.id])
                 return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('예약이 완료 되셨습니다'); window.location='/select/${campuslist[i]}'</script></html>`);
-              }else if(register[0].id === req.user[0].id && register[0].usetrue === '사용 중'){
+              }else if(register.id === req.user.id && register.usetrue === '사용 중'){
                 return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('사용 중인 강의실이 있습니다'); window.location='/select/${campuslist[i]}'</script></html>`);
               }
             }

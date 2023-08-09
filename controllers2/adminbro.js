@@ -23,7 +23,7 @@ router.use(express.static('uploads'));
 
 
 exports.adminbro = (req,res) => {
-  if(req.user[0].id == parseInt(process.env.ADMIN_ID)){
+  if(req.user.id == process.env.ADMIN_ID){
     return res.render("adminbro")
   }else{
     return res.status(404).send('ERROR!')

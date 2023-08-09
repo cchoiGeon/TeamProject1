@@ -6,7 +6,7 @@ CREATE TABLE Afloor2(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -14,7 +14,7 @@ CREATE TABLE Afloor3(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -22,7 +22,7 @@ CREATE TABLE Afloor4(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -32,7 +32,7 @@ CREATE TABLE Bfloor2(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -40,7 +40,7 @@ CREATE TABLE Bfloor3(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -48,7 +48,7 @@ CREATE TABLE Bfloor4(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -58,7 +58,7 @@ CREATE TABLE Cfloor2(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -66,7 +66,7 @@ CREATE TABLE Cfloor3(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -74,7 +74,7 @@ CREATE TABLE Cfloor4(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -84,7 +84,7 @@ CREATE TABLE Dfloor2(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -92,7 +92,7 @@ CREATE TABLE Dfloor3(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -100,7 +100,7 @@ CREATE TABLE Dfloor4(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -110,7 +110,7 @@ CREATE TABLE Efloor2(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -118,7 +118,7 @@ CREATE TABLE Efloor3(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -126,7 +126,7 @@ CREATE TABLE Efloor4(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -136,7 +136,7 @@ CREATE TABLE Sanyungfloor2(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -144,7 +144,7 @@ CREATE TABLE Sanyungfloor3(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -152,7 +152,7 @@ CREATE TABLE Sanyungfloor4(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -160,7 +160,7 @@ CREATE TABLE Sanyungfloor5(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -168,7 +168,7 @@ CREATE TABLE Sanyungfloor6(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );
@@ -176,7 +176,7 @@ CREATE TABLE Sanyungfloor7(
   number INT(3) NOT NULL,
   status TEXT NOT NULL,
   time DATETIME NULL,
-  now_userid INT(10) NULL,
+  now_userid TEXT NULL,
   past_userid INT(10) NULL,
   PRIMARY KEY(number)
 );

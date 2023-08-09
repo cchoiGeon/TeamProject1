@@ -34,7 +34,7 @@ exports.register_process = async(req,res,next) => { // 얘 auth
       // const hash = await bcrypt.hash(post.password,12) 
       // 아래 post.password hash로 바꿔주기
       await db.query('INSERT INTO register(id,password,name,usetrue,warning) VALUES(?,?,?,?,?)',[post.id,post.password,post.name,'사용가능',0])
-      return res.redirect('/');
+      return res.redirect('/login');
     }else{
       return res.write(`<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><script>alert('아이디와 비밀번호를 다시 한 번 확인해주세요'); window.location='/register'</script></html>`)
     }
