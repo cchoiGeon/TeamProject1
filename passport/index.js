@@ -4,7 +4,6 @@ const db = require('../db')
 
 module.exports = () => {
   passport.serializeUser((user, done) => { // 로그인 시 실행됨 , req.session 객체에 어떤 데이터를 저장할지 정하는 메서드 
-    console.log(user.id)
     done(null, user.id); // user.id 는 deserializeUser 에 있는 첫 번째 인수로 감 -> id
   });
 

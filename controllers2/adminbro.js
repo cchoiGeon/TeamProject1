@@ -40,7 +40,7 @@ exports.adminbro_process = (req,res) => {
 exports.adminbro_report = async(req,res,next) => {
   try{
     if(req.user.id == process.env.ADMIN_ID){
-      let report = await (db.query('SELECT * FROM report'))[0]
+      let report = await db.query('SELECT * FROM report')
       let table= `<table>
           <tr>
             <td>건물 이름</td>
